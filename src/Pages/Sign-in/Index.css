@@ -1,0 +1,54 @@
+.signIn {
+    background-color: #12002b;
+}
+
+.signIn-content {
+    box-sizing: border-box;
+    background-color: white;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 3rem;
+    padding: 2rem;
+}
+
+.signIn-content h1 {
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+}
+
+.signIn-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+  
+.signIn-content-wrapper label {
+    font-weight: bold;
+}
+
+.signIn-content-wrapper input {
+    padding: 5px;
+    font-size: 1.2rem;
+}
+
+.signIn-content-remember {
+    display: flex;
+}
+  
+.signIn-content-remember label {
+    margin-left: 0.25rem;
+}
+
+.signIn-content-button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    border-color: #00bc77;
+    background-color: #00bc77;
+    color: #fff;
+}
