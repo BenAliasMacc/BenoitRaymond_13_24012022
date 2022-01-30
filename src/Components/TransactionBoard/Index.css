@@ -1,0 +1,25 @@
+.transactionBoard {
+    width: 90%;
+    margin-inline: auto;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.transactionBoard tbody {
+    border: solid #bfc8d3 1px;
+}
+
+.transactionBoard tbody tr {
+    height: 4rem;
+    font-size: 1.25rem;
+}
+
+.transactionBoard th {
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.transactionBoard td {
+    background-color: white;
+    border-bottom: solid #98a3b0 2px;
+}
