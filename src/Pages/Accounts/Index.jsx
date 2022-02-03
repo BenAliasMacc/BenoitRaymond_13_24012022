@@ -1,16 +1,15 @@
 import React from 'react';
 import './Index.css'
 import ViewTransactionsButton from '../../Components/ViewTransactionsButton/Index';
-import { Link } from 'react-router-dom';
+import HeaderAccounts from '../../Components/HeaderAccounts/Index';
 
 function Accounts() {
+
+
     return (
         <main className='accounts'>
 
-            <div className='accounts-header'>
-                <h1>Welcome back<br/>Tony Jarvis!</h1>
-                <button className='accounts-header-button'>Edit Name</button>
-            </div>
+            <HeaderAccounts/>
 
             <h2 className='sr-only'>Accounts</h2>
 

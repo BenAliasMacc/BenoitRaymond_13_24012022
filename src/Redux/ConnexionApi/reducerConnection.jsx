@@ -1,32 +1,26 @@
-import { CONNEXION_API_FAILED, CONNEXION_API_SUCCESS } from "./type"
+import { CONNEXION_API_FAILED, CONNEXION_API_SUCCESS, SIGN_OUT } from "./type"
 
 const initialStateConnection = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
+    token: '',
+    connected: false,
     error: false
 }
 
-const initialStateTesy = {
-    firstTest: '',
-    lastTest: '',
-    other: ''
-}
-
 const reducerConnection = (state = initialStateConnection, action) => {
-    console.log(action);
     switch (action.type) {
         case CONNEXION_API_SUCCESS:
             return {
                 ...state,
-                token: action.payload
+                token: action.payload,
+                connected: true
             } 
         case CONNEXION_API_FAILED:
             return {
                 ...state,
                 error: true
             } 
+        case SIGN_OUT:
+            return initialStateConnection
             
         default: return state
     }

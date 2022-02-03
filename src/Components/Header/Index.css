@@ -22,6 +22,10 @@
   .header-signIn:hover {
     text-decoration: underline;
   }
+
+  .header-signIn i {
+    margin-left: 1rem;
+  }
   
   .header-logo {
     display: flex;

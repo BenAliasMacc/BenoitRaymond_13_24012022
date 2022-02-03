@@ -1,20 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Index.css'
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { apiCall } from '../../Redux/ConnexionApi/actionConnection';
-import reducerConnection from '../../Redux/ConnexionApi/reducerConnection';
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { getUserData } from '../../Redux/GetUserData/actionGetUserData';
 
 function SignIn() {
+
+    const token = useSelector(state => state.connection.token)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    console.log(token);
 
     const [user, setUser] = useState({
         email: "",
         password: ""
     })
 
-    const dispatch = useDispatch()
-console.log(apiCall.body);
+    const handleForm = e => {
+        e.preventDefault();
+        dispatch(apiCall(user))
+    }
+
+    useEffect(() => {
+        if(token !== "") {
+            dispatch(getUserData(token))
+            navigate('/accounts') 
+        }
+    }, [token]);
     
 
     return (
@@ -22,7 +37,7 @@ console.log(apiCall.body);
             <div className='signIn-content'>
                 <i className='fa fa-user-circle signIn-content-icon'></i>
                 <h1>Sign In</h1>
-                <form onSubmit={() => {dispatch(apiCall(user))}
+                <form onSubmit={e => {handleForm(e)}
                     }>
                     <div className='signIn-content-wrapper'>
                         <label htmlFor='username'>Username</label>
@@ -36,7 +51,7 @@ console.log(apiCall.body);
                         <input type='checkbox' id='remember-me'/>
                         <label htmlFor='remember-me'>Remember me</label>
                     </div>
-                    <button className='signIn-content-button'><Link to='#'>Sign In</Link></button> 
+                    <button className='signIn-content-button'>Sign In</button>
                 </form>
             </div>
         </main>

@@ -1,0 +1,35 @@
+.accountHeader {
+    color: #fff;
+    margin-bottom: 2rem;
+}
+
+.accountHeader-Input {
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.accountHeader-Input input:focus-visible {
+    outline: solid 2px #00bc77;
+}
+
+.accountHeader-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.accountHeader-buttons button {
+    width: 7rem;
+    height: 2rem;
+    background-color: white;
+    border: solid 2px #00bc77;
+    border-radius: 2px;
+    color: #00bc77;
+    font-weight: bold;
+}
+
+.accountHeader-buttons button:active {
+    border-style: outset;
+}
