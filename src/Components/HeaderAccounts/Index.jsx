@@ -27,8 +27,8 @@ function HeaderAccounts() {
 
     const displayHeader = !editMode ? (
         <>
-            <h1>Welcome back<br/>{userData.firstName} {userData.lastName}!</h1>
-            <button className='accounts-header-button' onClick={(e) => handleToggler(e, true)}>Edit Name</button>
+            <h1>Welcome back<br/>{userData.firstName} {userData.lastName} !</h1>
+            <button className='accountHeader-editButton' onClick={(e) => handleToggler(e, true)}>Edit Name</button>
         </>
     ) : (
         <>

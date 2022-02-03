@@ -27,7 +27,7 @@ function SignIn() {
     useEffect(() => {
         if(token !== "") {
             dispatch(getUserData(token))
-            navigate('/accounts') 
+            navigate('/private/accounts') 
         }
     }, [token]);
     

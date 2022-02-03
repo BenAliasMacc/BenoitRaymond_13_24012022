@@ -1,7 +1,7 @@
 import React from 'react';
 import './Index.css'
-import ViewTransactionsButton from '../../Components/ViewTransactionsButton/Index';
-import HeaderAccounts from '../../Components/HeaderAccounts/Index';
+import ViewTransactionsButton from '../../../Components/ViewTransactionsButton/Index';
+import HeaderAccounts from '../../../Components/HeaderAccounts/Index';
 
 function Accounts() {
 

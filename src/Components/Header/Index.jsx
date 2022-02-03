@@ -16,7 +16,17 @@ function Header() {
     dispatch(signOut())
   }
   
-  const signInOutButton = !connectionState ? (<Link to='/sign-in' className='header-signIn'><i className="fa fa-user-circle"></i> Sign In</Link>) : (<Link to='/' className='header-signIn' onClick={() => handleSignOut()}><i className="fa fa-user-circle"></i> {userFirstName} <i className="fa fa-sign-out"></i> Sign Out</Link>)
+  const signInOutButton = !connectionState ? (
+    <Link to='/sign-in' className='header-signIn'><i className="fa fa-user-circle"></i> Sign In</Link>
+  ) : (
+    <div>
+      <Link to='/private/accounts' className='header-signIn'>
+        <i className="fa fa-user-circle"></i> {userFirstName}</Link>
+      <Link to='/' className='header-signIn' onClick={() => handleSignOut()}>
+        <i className="fa fa-sign-out"></i> Sign Out
+      </Link>
+    </div>
+  )
 
   return (
     <header className='header'>
