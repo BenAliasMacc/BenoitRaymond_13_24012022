@@ -1,18 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Index.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { apiCall } from '../../Redux/ConnexionApi/actionConnection';
-import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { getUserData } from '../../Redux/GetUserData/actionGetUserData';
 
-function SignIn() {
+function SignIn({tokenInLocaleStorage}) {
 
-    const token = useSelector(state => state.connection.token)
+    const tokenInRedux = useSelector(data => data.connection.token)
+    const token = tokenInLocaleStorage ? tokenInLocaleStorage : tokenInRedux
+    
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
-    console.log(token);
+    
+    const [checkbox, setCheckbox] = useState(false);
+    
+    const handleCheckbox = () => {
+        setCheckbox(true)
+    }
 
     const [user, setUser] = useState({
         email: "",
@@ -21,16 +26,15 @@ function SignIn() {
 
     const handleForm = e => {
         e.preventDefault();
-        dispatch(apiCall(user))
+        dispatch(apiCall(user, checkbox))
     }
 
     useEffect(() => {
-        if(token !== "") {
-            dispatch(getUserData(token))
-            navigate('/private/accounts') 
+        if(token) {
+            dispatch(getUserData(token, checkbox))
+            navigate('/private/accounts')
         }
-    }, [token]);
-    
+    }, [dispatch, navigate, token]);
 
     return (
         <main className='signIn'>
@@ -48,7 +52,7 @@ function SignIn() {
                         <input type='text' id='password' value={user.password} onChange={e => setUser({...user, password: e.target.value})}/>
                     </div>
                     <div className='signIn-content-remember'>
-                        <input type='checkbox' id='remember-me'/>
+                        <input type='checkbox' id='remember-me' onClick={handleCheckbox}/>
                         <label htmlFor='remember-me'>Remember me</label>
                     </div>
                     <button className='signIn-content-button'>Sign In</button>

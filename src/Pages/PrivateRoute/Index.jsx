@@ -1,13 +1,14 @@
 
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router-dom';
 
-const PrivateRoute = () => {
+const PrivateRoute = ({tokenInLocaleStorage}) => {
 
-    const token = useSelector(state => state.connection.token) 
+    const tokenFromRedux = useSelector(data => data.connection.token)
+    const token = tokenInLocaleStorage ? tokenInLocaleStorage : tokenFromRedux
 
-    if(token === '') {
+    if(!token) {
         return <Navigate to="/" />
     }
 

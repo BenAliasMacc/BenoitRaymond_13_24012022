@@ -1,6 +1,5 @@
 import React from 'react';
 import './Index.css'
-import { Link } from 'react-router-dom';
 import TransactionBoard from '../../Components/TransactionBoard/Index';
 
 function Transactions() {

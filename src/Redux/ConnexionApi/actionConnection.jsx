@@ -1,9 +1,9 @@
 import { CONNEXION_API_FAILED, CONNEXION_API_SUCCESS, SIGN_OUT } from "./type"
 
-export const connexionApiSuccess = data => {
+export const connexionApiSuccess = (token, status) => {
     return {
         type: CONNEXION_API_SUCCESS,
-        payload: data
+        payload: {token: token, status: status}
     }
 }
 
@@ -20,8 +20,8 @@ export const signOut = () => {
     }
 }
 
-export const apiCall = user => {
-
+export const apiCall = (user, checkbox) => {
+    
     return (dispatch) => {
         fetch("http://localhost:3001/api/v1/user/login", {
             method: "POST",
@@ -32,7 +32,8 @@ export const apiCall = user => {
         })
         .then(response => response.json())
         .then(data => {
-            dispatch(connexionApiSuccess(data.body.token))
+            checkbox && localStorage.setItem('connexion', JSON.stringify({token: data.body.token, status: data.status}));
+            dispatch(connexionApiSuccess(data.body.token, data.status));
         })
         .catch(error => dispatch(connexionApiFailed(error)))
     }

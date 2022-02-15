@@ -3,11 +3,8 @@ import { EDIT_USERDATA_SUCCESS, GET_USERDATA_SUCCESS } from "./type"
 const initialStateUserData = {
     firstName: '',
     lastName: '',
-    status: '',
-    message: '',
     id: '',
-    email: '',
-    error: false
+    email: ''
 }
 
 const reducerGetUserData = (state = initialStateUserData, action) => {

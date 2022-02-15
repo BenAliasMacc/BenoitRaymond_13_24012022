@@ -14,8 +14,8 @@ export const editUserDataSuccess = data => {
     }
 }
 
-export const getUserData = (token, user)=> {
-
+export const getUserData = (token, checkbox) => {
+    
     return (dispatch) => {
         fetch("http://localhost:3001/api/v1/user/profile", {
             method: "POST",
@@ -23,10 +23,11 @@ export const getUserData = (token, user)=> {
                 "Authorization": `Bearer ${token}`,
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify()
         })
         .then(response => response.json())
         .then(data => {
+            checkbox && localStorage.setItem('userData', JSON.stringify(data.body));
             dispatch(getUserDataSuccess(data.body))
         })
         .catch(error => console.log(error))
@@ -47,6 +48,7 @@ export const editUserData = (token, user) => {
         })
         .then(response => response.json())
         .then(data => {
+            localStorage.setItem('userData', JSON.stringify(data.body));
             dispatch(editUserDataSuccess(data.body))
         })
         .catch(error => console.log(error))

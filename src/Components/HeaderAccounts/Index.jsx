@@ -5,8 +5,15 @@ import { editUserData } from '../../Redux/GetUserData/actionGetUserData';
 
 function HeaderAccounts() {
 
-    const userData = useSelector(state => state.userData)
-    const token = useSelector(state => state.connection.token)
+    const userDataInLocaleStorage = JSON.parse(localStorage.getItem('userData')) || ''
+    const userDataInRedux = useSelector(state => state.userData)
+    const userData = userDataInLocaleStorage ?  userDataInLocaleStorage : userDataInRedux
+
+    const connexionResponseApiInLocaleStorage = JSON.parse(localStorage.getItem('connexion')) || ''
+    const tokenInLocaleStorage = connexionResponseApiInLocaleStorage.token || ''
+    const tokenInRedux = useSelector(state => state.connection.token)
+    const token = tokenInLocaleStorage ? tokenInLocaleStorage : tokenInRedux
+
     const [user, setUser] = useState({
         lastName: '',
         firstName: ''

@@ -10,15 +10,23 @@ import SignIn from "./Pages/Sign-in/Index";
 import store from "./Redux/store";
 
 function App() {
+
+    const connexionResponseApiInLocaleStorage = JSON.parse(localStorage.getItem('connexion'))
+    const statusConnexion = connexionResponseApiInLocaleStorage ? connexionResponseApiInLocaleStorage.status : ''
+    const token = connexionResponseApiInLocaleStorage ? connexionResponseApiInLocaleStorage.token : ''
+
+    const userDataInLocaleStorage = JSON.parse(localStorage.getItem('userData'))
+    const userFirstName = userDataInLocaleStorage ? userDataInLocaleStorage.firstName : ''
+
   return (
 
     <Provider store={store}>
       <div className="App">
-        <Header/>
+        <Header statusInLocaleStorage={statusConnexion} userFirstNameInLocaleStorage={userFirstName}/>
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/sign-in" element={<SignIn/>}/>
-          <Route path="/private" element={<PrivateRoute/>}>
+          <Route path="/sign-in" element={<SignIn tokenInLocaleStorage={token}/>}/>
+          <Route path="/private" element={<PrivateRoute tokenInLocaleStorage={token}/>}>
             <Route exact path="/private/accounts" element={<Accounts/>}/>
           </Route>
           <Route path="*" element={<Navigate to={"/"}/>}/>

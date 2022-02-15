@@ -6,17 +6,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signOut } from '../../Redux/ConnexionApi/actionConnection';
 
 
-function Header() {
+function Header({statusInLocaleStorage, userFirstNameInLocaleStorage}) {
 
-  const connectionState = useSelector(state => state.connection.connected)
-  const userFirstName = useSelector(state => state.userData.firstName)
+  const statusInRedux = useSelector(state => state.connection.status)
+  const status = statusInLocaleStorage ? statusInLocaleStorage : statusInRedux
+  const userFirstNameInRedux = useSelector(state => state.userData.firstName)
+  const userFirstName = userFirstNameInLocaleStorage ? userFirstNameInLocaleStorage : userFirstNameInRedux
+
   const dispatch = useDispatch();
 
   const handleSignOut = () => {
+    localStorage.clear()
     dispatch(signOut())
+    document.locale.reload()
   }
   
-  const signInOutButton = !connectionState ? (
+  console.log(status);
+  const signInOutButton =  status !== 200 ? (
     <Link to='/sign-in' className='header-signIn'><i className="fa fa-user-circle"></i> Sign In</Link>
   ) : (
     <div>
